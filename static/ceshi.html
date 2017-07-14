@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI 自动完成（Autocomplete） - 默认功能</title>
+  <link rel="stylesheet" href="/file/css/jquery-ui.css">
+  <script src="/file/js/jquery-1.9.1.js"></script>
+  <script src="/file/js/jquery-ui.js"></script>
+    <link href="/file/css/layer.css" rel="stylesheet">
+  <script src="/file/js/layer.js?" type="text/javascript"></script>
+  <link rel="stylesheet" href="/file/css/style.css">
+  <script>
+  $(function() {
+    layer.open({
+                            content: 'sssss',
+                            btn: '我知道了', 
+                        });
+    var availableTags = [
+      "唐朝",
+      "中",
+      "中小学",
+      "中心",
+      "C",
+      "C++",
+      "大中",
+      "COBOL",
+      "唐朝",
+      "中",
+      "中小学",
+      "中心",
+      "C",
+      "C++",
+      "大中",
+      "唐朝",
+      "中",
+      "中小学",
+      "中心",
+      "C",
+      "C++",
+      "大中",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+    ];
+    $( "#tags" ).autocomplete({
+      source: availableTags,
+      max:2,
+      minChars:10
+    });
+  });
+  </script>
+</head>
+<body>
+ 
+<div class="ui-widget">
+  <label for="tags">标签：</label>
+  <input id="tags">
+</div>
+ 
+ 
+</body>
+</html>
+查看演示

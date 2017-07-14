@@ -1,0 +1,24 @@
+version: '2'
+services:
+  mysql:
+    image: mysql
+    ports:
+      - "33060:3306"
+    volumes:
+      - /Users/yaojiawei/mysqldb:/var/lib/mysql
+    environment:
+      HOSTNAME: mysql
+      MYSQL_ROOT_PASSWORD: example
+  redis:
+    image: redis
+    ports:
+      - "63790:6379"
+    volumes:
+      - /Users/yaojiawei/redisdb:/data
+    environment:
+      HOSTNAME: redis
+  golang:
+    image: golang
+    ports:
+      -"8080:80"
+    
