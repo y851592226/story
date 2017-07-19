@@ -4,8 +4,42 @@ import (
 	"story/utils/mysql"
 	"strconv"
     "strings"
+    "html/template"
     // "fmt"
 )
+type Item struct {
+    Href template.URL
+    Name string
+}
+
+type Topbar struct {
+    Item1 *Item
+    Item2 *Item
+    Item3 *Item
+}
+
+type Subnav struct {
+    Item []*Item
+}
+
+func GetSubnav() (subnav Subnav){
+    item1 := &Item{Href:"/",Name:"首页"}
+    item2 := &Item{Href:"/classify",Name:"分类"}
+    item3 := &Item{Href:"/rank",Name:"排行"}
+    item4 := &Item{Href:"/sf",Name:"轻小说"}
+    item5 := &Item{Href:"/shujia",Name:"书架"}
+    subnav.Item = append(subnav.Item,item1,item2,item3,item4,item5)
+    return
+}
+func GetTopbar2(book_name string) (topbar Topbar){
+    item1 := &Item{Href:"javascript:history.go(-1);",Name:"返回"}
+    item2 := &Item{Href:"",Name:book_name}
+    item3 := &Item{Href:"/",Name:"首页"}
+    topbar.Item1 = item1
+    topbar.Item2 = item2
+    topbar.Item3 = item3
+    return
+}
 
 type Chapter struct {
 	Book_id      int    `json:"book_id"`
@@ -66,7 +100,7 @@ func getChapterFromMysql(book_id, chapter_num int) (chapter *Chapter, err error)
 	chapter.Book_id = int(result[0][`book_id`].(int64))
 	chapter.Book_name = string(result[0][`book_name`].([]byte))
 	chapter.Chapter_num = int(result[0][`chapter_num`].(int64))
-	chapter.Chapter_name = `<script type="text/javascript"></script>`//string(result[0][`chapter_name`].([]byte))
+	chapter.Chapter_name = string(result[0][`chapter_name`].([]byte))
 	chapter.Chapter_url = `/get/book/` + strconv.Itoa(book_id) +
 		`/chapter/` + strconv.Itoa(chapter_num)
     chapter.Href_before = chapter.Chapter_url

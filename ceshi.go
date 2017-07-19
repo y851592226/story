@@ -1,4 +1,4 @@
-package main
+package mainb
 
 import "fmt"
 // import "story/utils/mysql"
