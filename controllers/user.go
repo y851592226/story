@@ -122,3 +122,4 @@ func (c *LogoutController) Get() {
 	}
 	c.Redirect("/", 302)
 }
+

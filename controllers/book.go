@@ -4,6 +4,7 @@ import (
 	"github.com/astaxie/beego"
 	"story/models"
 	"strconv"
+    "fmt"
 )
 
 type ChapterController struct {
@@ -23,8 +24,8 @@ func (c *ChapterController) Get() {
 	} else if chapter == nil {
 		c.Abort("404")
 	} else {
-        c.Data["topbar"] = models.GetTopbar2(chapter.Book_name)
-        c.Data["subnav"] = models.GetSubnav()
+		c.Data["topbar"] = models.GetTopbar2(chapter.Book_name)
+		c.Data["subnav"] = models.GetSubnav()
 		c.Data["chapter"] = chapter
 		c.Data["Title"] = chapter.Chapter_name
 		c.TplName = "chapter.tpl"
@@ -32,10 +33,20 @@ func (c *ChapterController) Get() {
 }
 
 func (c *BookInfoController) Get() {
-	// book_id := c.Ctx.Input.Param(":book_id")
-	// book = models.GetBook(book_id)
-	// for k,v := range chapter{
-	//     c.Data[k] = v
-	// }
-	// c.TplName = "book.html"
+	book_id, _ := strconv.Atoi(c.Ctx.Input.Param(":book_id"))
+    fmt.Println(book_id)
+	book, err := models.GetBook(book_id)
+	if err != nil {
+        // panic(err)
+		c.Abort("500")
+	} else if book == nil {
+        // panic("book not found")
+		c.Abort("404")
+	} else {
+		c.Data["topbar"] = models.GetTopbar2(book.Book_name)
+		c.Data["subnav"] = models.GetSubnav()
+		c.Data["book"] = book
+		c.Data["Title"] = book.Book_name
+		c.TplName = "book.tpl"
+	}
 }

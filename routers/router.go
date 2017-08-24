@@ -10,7 +10,7 @@ func init() {
     beego.Router("/login", &controllers.LoginController{})
     beego.Router("/logout", &controllers.LogoutController{})
     beego.Router("/register", &controllers.RegisterController{})
-    // beego.Router("/get/book/:id:int", &controllers.BookInfoController{})
+    beego.Router("/get/book/:book_id:int", &controllers.BookInfoController{})
     beego.Router("/get/book/:book_id:int/chapter/:chapter_id:int", &controllers.ChapterController{})
     // beego.Router("/search/bookname/:name:string", &controllers.SearchBookNameController{})
     // beego.Router("/search/authorname/:name:string", &controllers.SearchBookNameController{})
